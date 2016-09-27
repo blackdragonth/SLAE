@@ -7,3 +7,5 @@ After that, this KEY, again, will be added(+) to each byte of shellcode. Finally
 
 * For this technique to be effective, a maker value "0xD3"+KEY will be appended to the encoded shellcode. Surely, this can be changed.
 * To avoid overflow possibility, the byte value 0xf1-0xff will be skipped at the addition stage.
+
+  The decode stub should be adjust accordingly. 
