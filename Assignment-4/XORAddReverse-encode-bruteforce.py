@@ -13,17 +13,16 @@
 # The KEY will be pseudo-randomly generated (0x01 - 0xff), a weak one, absolutely, to reduce
 # the time used for decoding.
 
-# The docoder stub will reverse the encoded shellcode to its original order,
-# try to bruteforce the KEY at runtime, subtract the KEY from each byte of the shellcode, 
-# xor it back, and then execute the shellcode.
-
 # For this technique to be effective, a maker value "0xD3"+KEY will be appended to the
 # encoded shellcode.
 
 # [!!!] To avoid overflow possibility, the byte value 0xf1 - 0xff will be skipped at 
 # the addition stage.
 
-from sys import *
+# The docoder stub will reverse the encoded shellcode to its original order,
+# try to bruteforce the KEY at runtime, subtract the KEY from each byte of the shellcode, 
+# xor it back, and then execute the shellcode.
+
 from random import randint 
 
 key = randint(1,15)
@@ -44,6 +43,6 @@ for b in bytearray(shellcode):
 
 print "\nKey : 0x%02x" %key
 print "Length : %d + 1 (marker)"%len(shellcode)
-print "Encoded Hex String format : "+string+"\\x%02x" %(0xd3+key)		 	# Reverse the order and add a marker.
-print "Encoded Comma Separated byte format : "+csbyte+"0x%02x" %(0xd3+key) 	# Same.
+print "Encoded Hex String format : "+string+"\\x%02x" %(0xd3+key)		#Add marker at print time. 
+print "Encoded Comma Separated byte format : "+csbyte+"0x%02x" %(0xd3+key) 	
 print "\n"
